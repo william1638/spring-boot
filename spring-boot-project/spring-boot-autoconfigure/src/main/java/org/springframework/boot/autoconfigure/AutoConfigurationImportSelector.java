@@ -178,8 +178,10 @@ public class AutoConfigurationImportSelector
 	 */
 	protected List<String> getCandidateConfigurations(AnnotationMetadata metadata,
 			AnnotationAttributes attributes) {
+		// <1> 加载指定类型 EnableAutoConfiguration 对应的，在 `META-INF/spring.factories` 里的类名的数组
 		List<String> configurations = SpringFactoriesLoader.loadFactoryNames(
 				getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader());
+		// 断言，非空
 		Assert.notEmpty(configurations,
 				"No auto configuration classes found in META-INF/spring.factories. If you "
 						+ "are using a custom packaging, make sure that file is correct.");
